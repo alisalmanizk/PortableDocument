@@ -1430,10 +1430,11 @@
         headings.forEach((h) => {
           const item = document.createElement('li')
           const tagName = h.tagName.toLowerCase()
+          const rtl = getComputedStyle(h).direction == 'rtl'
           item.classList.add(tagName)
           item.textContent = h.textContent
-          item.style.textAlign =
-            getComputedStyle(h).direction == 'rtl' ? 'right' : 'left'
+          item.style.textAlign = rtl ? 'right' : 'left'
+          item.style.direction = rtl ? 'rtl' : 'ltr'
           item.addEventListener('click', () => {
             h.scrollIntoView({ behavior: 'smooth' })
           })
